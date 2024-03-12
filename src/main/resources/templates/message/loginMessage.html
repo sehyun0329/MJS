@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>MJS Library</title>
+</head>
+<body>
+  <script th:inline="javascript">
+      /*<![CDATA[*/
+      let result = [[${result}]];
+      alert([[${message}]]);
+      if(!result) history.go(-1);
+      else window.location.href="/index";
+      /*]]>*/
+  </script>
+</body>
+</html>

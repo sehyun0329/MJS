@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library_Main</title>
+    <link rel="stylesheet" th:href="@{/CSS/mainPage.css}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <header>
+        <div id="upside">
+            <div id="logoAndName">
+                <img id="logo" th:src="@{/img/book.png}" alt="book" onclick="location.href='/index'"/>
+                <p id="name" class="Btn" onclick="location.href='index.html'">MJSL</p>
+            </div>
+            <button class="Btn" id="loginBtn" onclick="location.href='/loginPage'">로그인</button>
+            <button class="Btn" id="signUpBtn" onclick="location.href='/signUpPage'">회원가입</button>
+            <button class="Btn" id="logoutBtn" style="display: none">로그아웃</button>
+        </div>
+    </header>
+    <hr>
+    <section>
+        <div id="searchBackground">
+            <div id ="searchBox">
+                <input type="search" id="searchInput"> 
+                <button class="Btn" id="searchBtn"><img id="magnifierImg" th:src="@{/img/magnifier.png}" alt="magnifier"></button>
+            </div>
+        </div>
+        <div id="category">
+            <a th:onclick="|location.href='@{/book-list/}'|">도서목록</a>
+            <a th:onclick="|location.href='@{/reservation}'|">열람실 예약</a>
+            <a th:onclick="|location.href='@{/requestBookList}'|">희망도서 신청</a>
+            <a th:onclick="|location.href='@{/script/}'|">도서 후기 게시판</a>
+        </div>
+        <hr>
+        <div id="footer">
+            <div id="recommendedBookList">
+                <h5>추천 도서</h5>
+                <img class="recommendedBook" id="recommendedBook1" src="" alt="">
+                <img class="recommendedBook" id="recommendedBook2" src="" alt="">
+            </div>
+            <div id="calander">
+                <h5>달력</h5>
+                <!-- 달력 api 가져와서 연결하기 -->
+                <div id="calanderBox">
+
+                </div>
+            </div>
+            <div id="referenceSite">
+                <h5>참고자료 사이트</h5>
+                <div id="referenceBox">
+                    <img class="referenceImg" th:src="@{/img/riss.png}" alt="RISS" onclick="location.href='https://www.riss.kr/index.do'">
+                    <img class="referenceImg" th:src="@{/img/kiss.png}" alt="KISS" onclick="location.href='https://kiss.kstudy.com/'">
+                    <img class="referenceImg" th:src="@{/img/국회도서관.png}" alt="국회도서관" onclick="location.href='https://www.nanet.go.kr/main.do'">
+                    <img class="referenceImg" th:src="@{/img/dbpia.png}" alt="DBpia" onclick="location.href='https://www.dbpia.co.kr/'">
+                </div>
+            </div>
+        </div>
+    </section>
+<script>
+    $(document).ready(function(){
+        checkSessionAndUpdateButtons();
+    });
+
+    $('#logoutBtn').click(function() {
+        $.ajax({
+            url: '/logout',
+            method: 'GET',
+            success: function(response) {
+                alert("success to Log out!!");
+                window.location.href="/index";
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+            }
+        });
+    });
+
+
+    function checkSessionAndUpdateButtons(){
+        $.ajax({
+            url: '/checkSession',
+            method: 'GET',
+            success: function(response){
+                if(response === 'logged-in'){
+                    $('#loginBtn').hide();
+                    $('#signUpBtn').hide();
+                    $('#logoutBtn').show();
+                }else{
+                    $('#loginBtn').show();
+                    $('#signUpBtn').show();
+                    $('#logoutBtn').hide();
+                }
+            },
+            error: function(xhr, status, error){
+                console.error(error);
+            }
+        })
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>MJS Library</title>
+</head>
+<body>
+  <script th:inline="javascript">
+      /*<![CDATA[*/
+      alert([[${message}]]);
+      let result = [[${result}]];
+      let id = [[${id}]];
+      if(result) window.location.href='/requestBookList'
+      else window.location.href='/requestBookDetail?id='+id;
+      /*]]>*/
+  </script>
+</body>
+</html>

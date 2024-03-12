@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book List</title>
+</head>
+<body>
+<div id="logo">
+    <img src="/img/book.png" alt="book" th:onclick="|location.href='@{/index}'|" style="width: 2%;
+  margin-right: 5px; cursor: pointer; "/>
+    <span th:onclick="|location.href='@{/index}'|" style="cursor: pointer;">MJSL</span>
+</div>
+<h2>Book List</h2>
+
+<div style="border: 1px solid black;">
+    <div style="display: flex; justify-content: space-between; border-bottom: 1px solid black; padding: 5px;">
+        <div>ID</div>
+        <div>Title</div>
+        <div>Author</div>
+        <div>Rented</div>
+        <div>Actions</div>
+    </div>
+    <div th:each="Book : ${books}" style="display: flex; justify-content: space-between; border-bottom: 1px solid black; padding: 5px;">
+        <div th:text="${Book.getId()}"></div>
+        <div th:text="${Book.getTitle()}"></div>
+        <div th:text="${Book.getTitle()}"></div>
+        <div th:text="${Book.isRented()} ? 'Yes' : 'No'"></div>
+        <div>
+            <a th:href="@{/book-list/books/{id}(id=${Book.getId()})}">
+                <button a th:href="book-details.html">Details</button>
+            </a>
+            <form th:action="@{/book-list/rent/{id}(id=${Book.getId()})}" method="get">
+                <button th:if="${!Book.isRented()}" type="submit">Rent</button>
+            </form>
+            <form th:action="@{/book-list/return/{id}(id=${Book.getId()})}" method="get">
+                <button th:if="${Book.isRented()}" type="submit">Return</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

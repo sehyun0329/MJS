@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>paging list</title>
+    <link rel="stylesheet" href="/CSS/bookScriptStyles.css">
+</head>
+<body>
+<header class="header">
+    <!--여기에 메인페이지, 로그인 페이지 연결하면 됩니다.-->
+    <div class="header-left">
+        <button class="home-button" onclick="location.href='/'">MJS</button>
+    </div>
+    <div class="header-right">
+        <button class="login-button" onclick="location.href='/loginPage'">Login</button>
+    </div>
+</header>
+<table>
+    <tr>
+        <th class="column-id">고유번호</th>
+        <th class="column-title">독후감 제목</th>
+        <th class="column-writer">작성자</th>
+        <th class="column-date">등록일</th>
+        <th class="column-hits">조회수</th>
+    </tr>
+    <tr th:each="script: ${scriptList}">
+        <td th:text="${script.id}"></td>
+        <td><a class ="script-title" th:href="@{|/script/${script.id}|(page=${scriptList.number + 1})}" th:text="${script.scriptTitle}"></a></td>
+        <td th:text="${script.scriptWriter}"></td>
+        <td th:text="*{#temporals.format(script.scriptCreatedTime, 'yyyy-MM-dd HH:mm:ss')}"></td>
+        <td th:text="${script.scriptHits}"></td>
+    </tr>
+</table>
+
+<div class="pagination-container">
+
+    <a th:href="@{/script/paging(page=1)}">처음</a>
+    <a th:href="${scriptList.first} ? '#' : @{/script/paging(page=${scriptList.number})}">이전</a>
+
+    <span th:each="page: ${#numbers.sequence(startPage, endPage)}">
+            <a th:href="@{/script/paging(page=${page})}" th:class="${page == scriptList.number + 1} ? 'active' : null" th:text="${page}"></a>
+
+    </span>
+    <a th:href="${scriptList.last} ? '#' : @{/script/paging(page=${scriptList.number + 2})}">다음</a>
+    <a th:href="@{/script/paging(page=${scriptList.totalPages})}">마지막</a>
+
+</div>
+<div class="button-search-container">
+    <button class="script-button" onclick=saveReq()>독후감 쓰러 가기</button>
+    <form action="/script/search" method="get" class="search-form">
+        <input type="text" name="searchTerm" placeholder="독후감 제목을 검색하세요" required>
+        <button type="submit">검색</button>
+    </form>
+</div>
+
+</body>
+<script>
+    const saveReq = () => {
+        location.href = "/script/save";
+    }
+
+</script>
+</html>

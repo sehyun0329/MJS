@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>detail</title>
+    <link rel="stylesheet" href="/CSS/bookScriptStyles.css">
+</head>
+<body>
+<header class="header">
+    <!--여기에 메인페이지, 로그인 페이지 연결하면 됩니다.-->
+    <div class="header-left">
+        <button class="home-button" onclick="location.href='/'">MJS</button>
+    </div>
+    <div class="header-right">
+        <button class="login-button" onclick="location.href='/loginPage'">Login</button>
+    </div>
+</header>
+<div class="detail-container">
+    <div class="detail-row">
+        <div class="detail-item detail-title">
+            <label>독후감 제목</label>
+            <div class="detail-value" th:text="${script.scriptTitle}"></div>
+        </div>
+        <div class="detail-item detail-writer">
+            <label>작성자</label>
+            <div class="detail-value" th:text="${script.scriptWriter}"></div>
+        </div>
+    </div>
+    <div class="detail-row">
+        <div class="detail-item detail-id">
+            <label>고유번호</label>
+            <div class="detail-value" th:text="${script.id}"></div>
+        </div>
+        <div class="detail-item detail-date">
+            <label>등록일</label>
+            <div class="detail-value" th:text="*{#temporals.format(script.scriptCreatedTime, 'yyyy-MM-dd HH:mm:ss')}"></div>
+        </div>
+        <div class="detail-item detail-hits">
+            <label>조회수</label>
+            <div class="detail-value" th:text="${script.scriptHits}"></div>
+        </div>
+    </div>
+    <div class="detail-content" th:text="${script.scriptContents}"></div>
+</div>
+
+<div class="button-container">
+    <button onclick="listReq()">목록</button>
+    <button onclick="updateReq()">수정</button>
+    <button onclick="deleteReq()">삭제</button>
+</div>
+<div id="deleteModal" style="display:none;">
+    <label for="deletePass">비밀번호 입력:</label>
+    <input type="password" id="deletePass" name="deletePass">
+    <button onclick="confirmDelete()">삭제 확인</button>
+</div>
+</body>
+<script th:inline="javascript">
+    const listReq = () => {
+        console.log("목록 요청");
+        const page = [[${page}]] || 1;
+        location.href = "/script/paging?page="+page;
+    }
+    const updateReq = () => {
+        console.log("수정 요청");
+        const id = [[${script.id}]];
+        location.href = "/script/update/" + id;
+    }
+    const deleteReq = () => {
+        // console.log("삭제 요청");
+        // const id = [[${script.id}]];
+        // location.href = "/script/delete/" + id;
+        document.getElementById('deleteModal').style.display = 'block';
+    }
+    const confirmDelete = () => {
+        const inputPass = document.getElementById('deletePass').value;
+        const scriptPass = [[${script.scriptPass}]];
+
+        if (inputPass === scriptPass) {
+            const id = [[${script.id}]];
+            location.href = "/script/delete/" + id;
+        } else {
+            alert("비밀번호가 일치하지 않습니다!");
+        }
+    }
+</script>
+</html>

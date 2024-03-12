@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>save</title>
+    <link rel="stylesheet" href="/CSS/bookScriptStyles.css">
+</head>
+<body>
+<header class="header">
+    <!--여기에 메인페이지, 로그인 페이지 연결하면 됩니다.-->
+    <div class="header-left">
+        <button class="home-button" onclick="location.href='/'">MJS</button>
+    </div>
+    <div class="header-right">
+        <button class="login-button" onclick="location.href='/loginPage'">Login</button>
+    </div>
+</header>
+<div class="form-container">
+    <form action="/script/save" method="post" >
+        작성자: <input type="text" name="scriptWriter" required> <br>
+        비밀번호: <input type="text" name="scriptPass" required> <br>
+        독후감 제목: <input type="text" name="scriptTitle" required> <br>
+        독후감 내용: <textarea name="scriptContents" cols="30" rows =10 placeholder="독후감을 작성하세요." required></textarea> <br>
+        <input class="submit-button" type="submit" value="독후감 작성하기">
+    </form>
+</div>
+</body>
+</html>

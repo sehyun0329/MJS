@@ -1,0 +1,356 @@
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 40px;
+    background-color: #f7f7f7;
+    overflow-x: hidden;
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background: #f7f7f7;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.header-left,
+.header-right {
+    display: flex;
+    align-items: center;
+}
+.home-button {
+    background-color: transparent;
+    color: #002868;
+    font-size: 2em;
+    padding: 10px 20px;
+    cursor: pointer;
+    border: none;
+    font-weight: bold;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+.home-button:hover {
+    color: white;
+    transform: scale(1.1);
+}
+.login-button {
+    padding: 5px 15px;
+    margin: 0 10px;
+    background-color: #0086D1;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.login-button:hover {
+    background-color: #002868;
+}
+/* 상세 정보 페이지 컨테이너 */
+.detail-container {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: calc(100% - 80px);
+    max-width: 800px;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 상세 정보 행 */
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* 상세 정보 항목 */
+.detail-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    margin-right: 10px;
+}
+
+.detail-item:last-child {
+    margin-right: 0;
+}
+
+/* 라벨과 값 스타일 */
+.label {
+    padding: 10px;
+    background-color: #eeeeee;
+    margin-bottom: 5px;
+    font-size: 0.9em;
+}
+.detail-value {
+    padding: 10px;
+    background-color: #eeeeee;
+    margin-bottom: 5px;
+}
+
+/* 상세 정보 내용 칸 */
+.detail-content {
+    background-color: #dddddd;
+    padding: 10px;
+    height: 300px;
+    margin-bottom: 20px;
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+/* 버튼 컨테이너 */
+.button-container {
+    text-align: center;
+    padding-top: 20px;
+}
+
+/* 버튼 스타일 */
+button {
+    margin: 0 10px;
+    padding: 10px 20px;
+    background-color: #002868;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0086D1;
+}
+
+/* 목록 페이지 테이블 */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #f0f0f0;
+}
+
+th {
+    background-color: #002868;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+tr {
+    height: 40px;
+    overflow: hidden;
+}
+
+/* 홀수 줄 배경색 */
+tr:nth-child(odd) {
+    background-color: #e9e9e9;
+}
+
+/* 인덱스 페이지 버튼 */
+.index-button {
+    width: 100%;
+    padding: 20px;
+    margin-bottom: 30px;
+    background-color: #002868;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.index-button:hover {
+    background-color: #0086D1;
+}
+
+/* 특정 요소의 비율 설정 */
+.detail-title { flex: 5; }
+.detail-writer { flex: 3; }
+.detail-id { flex: 2; }
+.detail-date { flex: 4; }
+.detail-hits { flex: 3; }
+
+/* 폰트 크기 조정 */
+.detail-date .detail-value {
+    font-size: 0.8em;
+}
+
+/* 글작성 페이지 스타일 */
+.form-container {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+input[type="text"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+input[type="text"], textarea,
+input[type="password"] {
+    box-sizing: border-box;
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input[type="submit"] {
+    background-color: #002868;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.submit-button {
+    float: right;
+    margin-right: 20px;
+    padding: 10px 20px;
+    background-color: #002868;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.submit-button:hover {
+    background-color: #0086D1;
+}
+
+/* 페이지 중앙 정렬 컨테이너 */
+.centered-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* 페이지네이션 컨테이너 */
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    bottom: 0;
+    padding-bottom: 20px;
+    margin-top: 20px;
+    width: 100%;
+    text-align: center;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+    background-color: transparent;
+}
+a:hover {
+    text-decoration: none;
+    color: rgb(128, 128, 128);
+}
+
+/* 페이지 번호 링크 스타일 */
+.pagination-container a {
+    display: inline-block;
+    margin: 0 5px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: #f7f7f7;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    vertical-align: middle;
+}
+.pagination-container a:not(.active) {
+    background-color: #e9e9e9;
+}
+.pagination-container a.active {
+    background-color: #0086D1;
+    color: white;
+    pointer-events: none;
+    cursor: default;
+}
+.pagination-container a:hover {
+    color: #0086D1;
+}
+
+
+.column-id, .column-hits {
+    width: 10%
+}
+.column-title{
+    width: 40%
+}
+.column-writer{
+    width: 15%;
+}
+.column-date{
+    width: 25%;
+}
+
+textarea::placeholder{
+    color: #888;
+    font-style: italic;
+}
+.search-form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.search-form input[type="text"] {
+    flex: none;
+    max-width: 100%;
+    width: auto;
+    height: 40px;
+    line-height: 40px;
+    margin-top: 10px;
+}
+
+.search-form button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 10px;
+    background-color: #0086D1;
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: auto;
+    white-space: nowrap;
+    height: 40px;
+    line-height: 40px;
+}
+.search-form button:hover {
+    background-color: #002868;
+}
+/* 독후감쓰러가기 버튼 */
+.script-button {
+    display: flex;
+    text-align: left;
+    height: 40px;
+    line-height: 40px;
+    margin: 0px;
+    align-items: center;
+}
+.button-search-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+.script-title {
+    font-size: 1em;
+    transition: font-size 0.3s ease;
+}
+.script-title:hover {
+    font-size: 1.2em;
+}

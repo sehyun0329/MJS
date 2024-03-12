@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&family=Nanum+Gothic&display=swap');
+
+body{
+  width: 70%;
+  margin: auto;
+}
+
+#logo, #logging{
+  font-size: 18px;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0px 30px 0px;
+}
+#logo{
+  float: left;
+  font-family: 'Nanum Gothic', sans-serif;
+  display: flex;
+}
+#logo img{
+  width: 5%;
+  margin-right: 10px;
+}
+#logging{
+  float: right;
+}
+#content{
+  font-size: 20px;
+  margin-bottom: 30px;
+  display: flex;
+}
+#content div{
+  cursor: pointer;
+}
+#nav{
+  display: flex;
+  font-family: 'Nanum Gothic', sans-serif;
+  font-weight: bold;
+}
+#countNum{
+  padding-top: 20px;
+}
+#selectOption{
+  margin-right: 10px;
+  background-color: #f5f5f5;
+  font-size: 14px;
+  font-family: 'Nanum Gothic', sans-serif;
+  outline: none;
+  text-align: left;
+  padding: 5px 5px;
+  border: none;
+}
+#search{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto auto 20px 15%;
+  background-color: #F5F5F5;
+  border-radius: 15px;
+  padding: 10px;
+  width: 60%;
+}
+#searchInput{
+  font-family: 'Nanum Gothic', sans-serif;
+  width: 90%;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  background-color: #F5F5F5;
+}
+#search img{
+  width: 120%;
+  cursor: pointer;
+}
+#search Button{
+  border: none;
+  background-color: #f5f5f5;
+}
+#requestBookTable {
+  margin: auto;
+  width: 90%;
+  font-size: 14px;
+  text-align: center;
+}
+table, td {
+  border-collapse: collapse;
+  border: 1px solid;
+  font-family: 'Nanum Gothic', sans-serif;
+}
+.columns td{
+  padding: 15px;
+  background-color: #D9D9D9;
+  font-weight: bold;
+  font-size: 16px;
+}
+#record{
+  cursor: pointer;
+}
+td{
+  padding: 10px 15px;
+}
+.number{
+  background-color: #F5F5F5;
+  font-weight: bold;
+  width: 7%;
+}
+.bookName{
+  width: 35%;
+}
+.author{
+  width: 20%;
+}
+.publisher{
+  width: 15%;
+}
+.date{
+  width: 13%;
+}
+#paging{
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#paging button, #pageNum {
+  margin: 2% 0.5% 0.5%;
+}
+#paging button { 
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+#paging button:hover img, #requestBtn:hover{
+  opacity: 0.7;
+  filter: grayscale(50%);
+}
+#paging img{
+  width: 70%;
+  opacity: 0.9;
+}
+#pageNum{
+  padding-bottom: 0.5%;
+}
+#request{
+  margin-right: 5%;
+  float: right;
+}
+#requestBtn {
+  border: none;
+  background-color: #023373;
+  color: white;
+  padding: 5px 10px;
+  cursor: pointer;
+}

@@ -1,0 +1,80 @@
+*{
+    margin: 0;
+}
+
+#upside{
+    display: grid;
+    grid-template-columns: 3fr 1fr 1fr;
+}
+
+#logo{
+    margin: 2px;
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    display: inline;
+}
+
+#libraryName{
+    display: inline;
+    margin-left: 5px;
+}
+
+#logoAndName{
+    display: flex;
+    align-items: center;
+}
+
+#logo:hover{
+    cursor: pointer;
+}
+
+.Btn{
+    background-color: transparent;
+    border:  none;
+}
+
+.Btn:hover{
+    cursor: pointer;
+}
+
+#signUpBox{
+    border: 1px solid black;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    display: grid;
+    place-items: center;
+    padding: 40px;
+}
+
+#inputSignUpBtn{
+    background-color: lightgray;
+    border: none;
+    width: 250px;
+}
+
+#inputSignUpBtn:hover{
+    cursor: pointer;
+}
+
+.input{
+    width: 250px;
+    padding: 5px;
+    display: grid;
+    grid-template-columns: 1fr 6fr;
+}
+
+#inputID{
+    width: 250px;
+    padding: 5px;
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr;
+}
+
+#checkIDDuplicateBtn{
+    background-color: transparent;
+    border: 1px solid black;
+    font-size: 8px;
+}

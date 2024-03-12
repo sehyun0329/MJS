@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MJS Library</title>
+  <link rel="stylesheet" href="/CSS/RequestBookList.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div id="logo" >
+      <img src="/img/book.png" alt="book" th:onclick="|location.href='@{/index}'|"/>
+      <span th:onclick="|location.href='@{/index}'|">MJSL</span>
+    </div>
+  </header> 
+  <section>
+    <!-- <hr> -->
+    <div id="content">
+      <div th:onclick="'location.reload(true)'">희망도서 신청 내역</div>
+    </div>
+    <div id="nav">
+      <span id="countNum">총: <span th:text="${totalNum}"></span>건</span>
+      <form id="search" action="/requestBookList/search" method="GET">
+        <select id="selectOption" name="selectOption">
+          <option value="title">도서명</option>
+          <option value="author">저자</option>
+          <option value="publisher">출판사</option>
+        </select>
+        <input id="searchInput" name="keyword" type="text">
+        <button><img src="/img/search.svg"></button>
+      </form>
+    </div>
+    <div id="requestBookList">
+      <table id="requestBookTable">
+        <tr class="columns">
+          <td>No.</td>
+          <td>도서명</td>
+          <td>저자</td>
+          <td>출판사</td>
+          <td>신청일</td>
+          <td>처리결과</td>
+        </tr>
+        <tr id="record" th:each="RequestBook : ${list}" th:onclick="|location.href='/requestBookDetail?id=${RequestBook.getId()}'|">
+          <td class="number" th:text="${RequestBook.getId()}"></td>
+          <td class="bookName" th:text="${RequestBook.getBookName()}"></td>
+          <td class="author" th:text="${RequestBook.getAuthor()}"></td>
+          <td class="publisher" th:text="${RequestBook.getPublisher()}"></td>
+          <td class="date" th:text="${RequestBook.getFormattedDate('yyyy-MM-dd')}"></td>
+          <td th:if="${RequestBook.isCompletion()}" th:text="완료"></td>
+          <td th:if="${!RequestBook.isCompletion()}" th:text="진행중"></td>
+        </tr>
+      </table>
+    </div>
+    <div id="paging">
+      <button th:onclick="|location.href='@{/requestBookList(page=0)}'|"><img src="/img/firstPage.svg" alt="<<"></button>
+      <button th:onclick="|location.href='@{/requestBookList(page=${pageNum-1})}'|"><img src="/img/back.svg" alt="<"></button>
+      <div id="pageNum" th:text="${pageNum+1}"></div>
+      <button th:if="${pageNum+1 < lastPage}" th:onclick="|location.href='@{/requestBookList(page=${pageNum+1})}'|"><img src="/img/next.svg" alt=">"></button>
+      <button th:if="${pageNum+1 >= lastPage}" th:onclick="|location.href='@{/requestBookList(page=${lastPage-1})}'|"><img src="/img/next.svg" alt=">"></button>
+      <button th:onclick="|location.href='@{/requestBookList(page=${lastPage-1})}'|"><img src="/img/lastPage.svg" alt=">>"></button>
+    </div>
+    <div id="request">
+      <button id="requestBtn" th:onclick="|location.href='@{/requestBook}'|">신청하기</button>
+    </div>
+  </section>
+</body>
+</html>

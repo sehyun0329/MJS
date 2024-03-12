@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Details</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    h2 {
+      color: #333;
+    }
+
+    .book-details {
+      margin-bottom: 20px;
+    }
+
+    .detail-label {
+      font-weight: bold;
+    }
+
+    .detail-value {
+      margin-left: 10px;
+    }
+
+    .back-button {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Book Details</h2>
+
+<!-- Display book details -->
+<div class="book-details">
+  <div>
+    <span class="detail-label">ID:</span>
+    <span class="detail-value" th:text="${book.id}"></span>
+  </div>
+  <div>
+    <span class="detail-label">Title:</span>
+    <span class="detail-value" th:text="${book.title}"></span>
+  </div>
+  <div>
+    <span class="detail-label">Author:</span>
+    <span class="detail-value" th:text="${book.author}"></span>
+  </div>
+  <div>
+    <span class="detail-label">Rented:</span>
+    <span class="detail-value" th:text="${book.rented} ? 'Yes' : 'No'"></span>
+  </div>
+</div>
+
+<!-- Add a link to go back to the book list -->
+<div class="back-button">
+  <a th:href="@{/book-list/}"><button>Back to Book List</button></a>
+</div>
+
+</body>
+</html>

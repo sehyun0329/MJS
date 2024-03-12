@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/CSS/loginPage.css">
+    <title>Library_Login</title>
+</head>
+<body>
+    <header>
+        <div id="upside">
+            <div id="logoAndName">
+                <img id="logo" src="/img/book.png" alt="book" onclick="location.href='/index'"/>
+                <p id="name" class="Btn" onclick="location.href='/index'">MJSL</p>
+            </div>
+            <button class="Btn" id="loginBtn" onclick="location.href='/loginPage'">로그인</button>
+            <button class="Btn" id="signUpBtn" onclick="location.href='/signUpPage'">회원가입</button>
+        </div>
+    </header>
+    <hr>
+    <body>
+        <form action="/login" method="post" accept-charset="UTF-8">
+            <div id="loginBox">
+                <div class="input">
+                    <label for="idInput">ID :</label>
+                    <input name="id" id="idInput" type="text">
+                </div>
+                <div class="input">
+                    <label for="pwInput">PW :</label>
+                    <input name="pw" id="pwInput" type="text">
+                </div>
+                <button id="inputLoginBtn">로그인</button>
+            </div>
+        </form>
+    </body>
+</body>
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Library Seat Reservation</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        header {
+            width: 100%;
+            text-align: center;
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        header::after {
+            content: "";
+            display: block;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            height: 1px;
+            background-color: #fff;
+        }
+
+        .reservation-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .seat-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            width: 95%;
+            margin-bottom: 2%;
+            margin-top: 2%;
+        }
+
+        .seat-png {
+            width: 100%;
+            height: 100%;
+        }
+
+        .seat {
+            width: 7%;
+            border: 1px solid #000;
+            margin: 10px;
+            text-align: center;
+            line-height: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 10px;
+        }
+
+        .mainPageBtn,
+        .reservationListBtn {
+            background-color: #344fac;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .PageBtn {
+            align-items: center;
+            display: flex;
+            justify-content: center;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            margin-right: 10px;
+        }
+
+        input {
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+
+        input[type="submit"] {
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        p {
+            margin: 5px 0;
+        }
+
+        .banner-png {
+            max-height: 250px;
+            width: 1520px;
+        }
+
+
+        .reservation-list {
+            margin-top: 20px;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+
+<!--이미지-->
+<div>
+    <img class="banner-png" th:src="@{/img/banner.png}" />
+</div>
+<div id="logo" >
+    <img src="/img/book.png" alt="book" th:onclick="|location.href='@{/index}'|" style="width: 6%;
+  margin-right: 10px;cursor: pointer; " />
+    <span th:onclick="|location.href='@{/index}'|" style="cursor: pointer;">MJSL</span>
+</div>
+<div class="seat-list">
+    <!-- 각 좌석에 대한 정보 -->
+    <div th:each="seatNumber: ${#numbers.sequence(1, 8)}" class="seat">
+        <div th:text="'Seat ' + ${seatNumber}"></div>
+        <img class="seat-png" th:src="@{/img/seat.png}" />
+        <!-- 해당 좌석에 예약된 정보 표시 -->
+        <div th:each="reservation : ${reservations}">
+            <div th:if="${reservation.tableName != null and reservation.tableName == 'reservation' + #seatNumber}">
+                <!-- 예약자 출력 -->
+                <p th:text="'Reserved: ' + ${reservation.name}"></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    /* Display pop-up message if the reservation was not successful */
+    var isReservationSuccessful = /*[[${isReservationSuccessful}]]*/ false;
+    var reservationError = /*[[${reservationError}]]*/ '';
+
+    // Check if the error occurred and the pop-up is not already displayed
+    var displayPopup = !isReservationSuccessful && reservationError;
+
+    if (displayPopup) {
+        alert('Seat is already reserved.'); // 변경: 좌석 예약 실패 메시지
+    }
+    /*]]>*/
+</script>
+
+<div class="reservation-container">
+    <h2>Library Seat Reservation</h2>
+
+    <!-- 좌석 예약 폼 -->
+    <form th:action="@{/reserve}" method="post">
+        <label>Name:</label>
+        <input type="text" th:name="name" placeholder="Enter your name" required />
+        <label>Seat Number:</label>
+        <input type="number" th:name="tableNumber" placeholder="Enter seat number" required />
+        <input type="submit" value="Reserve" />
+    </form>
+
+    <form th:action="@{/return}" method="post">
+        <label>Name:</label>
+        <input type="text" th:name="name" placeholder="Enter your name" required />
+        <label>Seat Number:</label>
+        <input type="number" th:name="tableNumber" placeholder="Enter seat number" required />
+        <input type="submit" value="Return" />
+    </form>
+</div>
+
+<!--페이지 이동 버튼-->
+<div class="PageBtn">
+    <button class="mainPageBtn" th:onclick="|location.href='@{/index}'|" style="margin-right: 10px; background-color: #002868;">메인페이지</button>
+    <button onclick="location.href='/ReservationList'" class="reservationListBtn" style="margin-left: 10px; background-color: #002868;">예약현황</button>
+</div>
+
+
+</body>
+
+</html>

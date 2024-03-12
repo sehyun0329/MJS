@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>update</title>
+    <link rel="stylesheet" href="/CSS/bookScriptStyles.css">
+</head>
+<body>
+<!--여기에 메인페이지, 로그인 페이지 연결하면 됩니다.-->
+<header class="header">
+    <div class="header-left">
+        <button class="home-button" onclick="location.href='/'">MJS</button>
+    </div>
+    <div class="header-right">
+        <button class="login-button" onclick="location.href='/loginPage'">Login</button>
+    </div>
+</header>
+<div class="form-container">
+    <form action="/script/update" method="post" name="updateForm">
+        <input type="hidden" name="id" th:value="${scriptUpdate.id}">
+        작성자: <input type="text" name="scriptWriter" th:value="${scriptUpdate.scriptWriter}" readonly> <br>
+        비밀번호: <input type="text" name="scriptPass" id="scriptPass"> <br>
+        독후감 제목: <input type="text" name="scriptTitle" th:value="${scriptUpdate.scriptTitle}"> <br>
+        독후감 내용: <textarea name="scriptContents" cols="30" rows="10" th:text="${scriptUpdate.scriptContents}"></textarea> <br>
+        <input type="hidden" name="scriptHits" th:value="${scriptUpdate.scriptHits}">
+        <input class="submit-button" type="button" value="수정하기" onclick="scriptUpdate()">
+    </form>
+</div>
+
+<script th:inline="javascript">
+    const scriptUpdate = () => {
+        const pass = [[${scriptUpdate.scriptPass}]];
+        const inputPass = document.getElementById("scriptPass").value;
+        if (pass == inputPass) {
+            document.updateForm.submit();
+        } else {
+            alert("비밀번호가 일치하지 않습니다!");
+        }
+    }
+
+</script>
+</body>

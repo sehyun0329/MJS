@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Library Seat Reservation</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      flex-direction: column;
+    }
+
+    header {
+      width: 100%;
+      text-align: center;
+      background-color: #333;
+      color: #fff;
+      padding: 10px 0;
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    header h1 {
+      margin: 0;
+    }
+
+    header::after {
+      content: "";
+      display: block;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      height: 1px;
+      background-color: #fff;
+    }
+
+    form {
+      margin-top: 20px;
+    }
+
+    label {
+      margin-right: 10px;
+    }
+
+    input {
+      padding: 5px;
+      margin-bottom: 10px;
+    }
+
+    input[type="submit"] {
+      background-color: #4caf50;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    h2 {
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    p {
+      margin: 5px 0;
+    }
+
+    .reservation-list {
+      margin-top: 20px;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: left;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .backPage {
+      background-color: #344fac;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .banner-png {
+      width: 100%; /* Set the width to 100% for responsiveness */
+      max-height: 200px; /* Set a maximum height as needed */
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+<!--이미지-->
+<div>
+  <img class="banner-png" th:src="@{/img/banner.png}" />
+</div>
+
+<!-- 예약 리스트 및 메시지 출력 -->
+<h2>예약 현황</h2>
+<div class="reservation-list">
+  <div th:each="reservation : ${reservations}">
+    <p th:text="'Name: ' + ${reservation.name} + ', Seat Number: ' + ${reservation.tableName}"></p>
+  </div>
+</div>
+
+<!-- ReservationList.html -->
+<button onClick="location.href='/reservation'" class="backPage" style="background-color: #002868;">예약페이지로 돌아가기</button>
+
+
+
+</body>
+
+</html>
