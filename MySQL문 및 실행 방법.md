@@ -52,3 +52,5 @@ create table script_table
 * 실행 시 주의사항 *
 yml에서 username과 password는 mysql 계정 입력,
 url의 맨 뒤의 /test는 ddl.txt에서 create database test; 으로 생성하였기에 url 뒤에 test로 붙여줌
+
+내 티스토리 글 참고: https://hyunworld.tistory.com/35
